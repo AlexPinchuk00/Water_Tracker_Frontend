@@ -1,4 +1,4 @@
-import authInstance, { setToken, unSetToken } from './axiosInstance';
+import authInstance  from './axiosInstance';
 
 // ==============================
 //            AUTH
