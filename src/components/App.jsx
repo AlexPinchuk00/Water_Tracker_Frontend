@@ -38,7 +38,7 @@ const App = () => {
         />
         <Route
           path="home"
-          element={<PrivateRoute component={<HomePage/>} redirectTo={'/'} />}
+          element={<PrivateRoute component={<HomePage />} redirectTo={'/'} />}
         />
         <Route
           path="signin"

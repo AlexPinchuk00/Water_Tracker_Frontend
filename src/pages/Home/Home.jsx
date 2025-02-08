@@ -1,21 +1,26 @@
-import { Section } from '../../components/common/Section/Section';
-import { DailyNorma } from '../../components/Home/DailyNorma/DailyNorma';
-import { WaterRatioPanel } from '../../components/Home/WaterRatioPanel/WaterRatioPanel';
+import {
+  DailyNorma,
+  MonthStatsTable,
+  TodayWaterList,
+  WaterRatioPanel,
+} from 'components';
+
+import { BoxHome, HomeSection, HomeStatistics } from './Home.styled';
 
 const Home = () => {
   return (
-    <Section>
-      <div>
-        <DailyNorma />
-        <WaterRatioPanel />
-      </div>
-      <div>
-        <h3>Today Water list</h3>
-      </div>
-      <div>
-        <h3>Monthly water list</h3>
-      </div>
-    </Section>
+    <HomeSection>
+      <BoxHome>
+        <div>
+          <DailyNorma />
+          <WaterRatioPanel />
+        </div>
+        <HomeStatistics>
+          <TodayWaterList />
+          <MonthStatsTable />
+        </HomeStatistics>
+      </BoxHome>
+    </HomeSection>
   );
 };
 
