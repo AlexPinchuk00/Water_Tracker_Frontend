@@ -25,7 +25,7 @@ export const UserLogo = () => {
   console.log(token);
   // if (user === undefined) {
   //   return <div>Loading...</div>;
-  }
+  // }
   const { name = ' ', avatarURL = ' ' } = user;
   // const { name , avatarURL } = useSelector(selectUser);
 
