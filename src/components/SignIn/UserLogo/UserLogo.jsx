@@ -62,7 +62,7 @@ export const UserLogo = () => {
     <UserLogoContainer>
       <UserLogoTitle>{userName}</UserLogoTitle>
       <UserLogoBtn onClick={showModal} ref={myRef}>
-        {avatarURL ? (
+        {/* {avatarURL ? ( */avatar ? (
           <UserAvatar src={avatar} alt="user-avatar" />
         ) : (
           <UserDefaultAvatar>{avatar}</UserDefaultAvatar>
