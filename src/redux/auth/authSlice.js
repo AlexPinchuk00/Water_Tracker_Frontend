@@ -32,7 +32,7 @@ export const initialState = {
     avatarURL: '',
     name: '',
     gender: '',
-    waterRate: '',
+    dailyGoal: '',
   },
   token: '',
   isLoggedIn: false,
