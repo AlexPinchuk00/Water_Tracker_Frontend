@@ -34,7 +34,7 @@ export const initialState = {
     gender: '',
     waterRate: '',
   },
-  token: null,
+  token: '',
   isLoggedIn: false,
   isRefreshing: false,
 };
