@@ -35,22 +35,26 @@ export const UserLogo = () => {
   const firstLetter = name ? name.charAt(0).toUpperCase() : 'V';
 
   const getUserInfo = () => {
-    if (name && avatarURL) {
-      return {
-        userName: name,
-        avatar: avatarURL,
-      };
-    } else if (name || avatarURL) {
-      return {
-        userName: name || firstLetter,
-        avatar: avatarURL || firstLetter,
-      };
-    } else {
-      return {
+    // if (name && avatarURL) {
+    //   return {
+    //     userName: name,
+    //     avatar: avatarURL,
+    //   };
+    // } else if (name || avatarURL) {
+    //   return {
+    //     userName: name || firstLetter,
+    //     avatar: avatarURL || firstLetter,
+    //   };
+    // } else {
+    //   return {
+    //     userName: firstLetter,
+    //     avatar: firstLetter,
+    //   };
+    // }
+    return {
         userName: firstLetter,
         avatar: firstLetter,
       };
-    }
   };
   const { userName, avatar } = getUserInfo();
 
