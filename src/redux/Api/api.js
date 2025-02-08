@@ -3,11 +3,11 @@ import authInstance  from './axiosInstance';
 // ==============================
 //            AUTH
 // ==============================
-const setToken = token => {
+export const setToken = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-const unsetToken = () => {
+export const unsetToken = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
