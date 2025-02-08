@@ -19,7 +19,8 @@ export const UserLogo = () => {
   const myRef = useRef();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const { name = ' ', avatarURL = ' '} = useSelector(selectUser);
+  const user = useSelector(selectUser);
+  const { name = ' ', avatarURL = ' '} = user || {};
 
   const showModal = () => {
     setModalIsOpen(!modalIsOpen);

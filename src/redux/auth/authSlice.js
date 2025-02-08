@@ -28,13 +28,13 @@ import {
 
 export const initialState = {
   user: {
-    email: null,
-    avatarURL: null,
-    name: null,
-    gender: null,
-    waterRate: null,
+    email: '',
+    avatarURL: '',
+    name: '',
+    gender: '',
+    waterRate: '',
   },
-  token: null,
+  token: '',
   isLoggedIn: false,
   isRefreshing: false,
 };
