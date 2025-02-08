@@ -3,6 +3,13 @@ import authInstance, { setToken, unSetToken } from './axiosInstance';
 // ==============================
 //            AUTH
 // ==============================
+const setToken = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+const unsetToken = () => {
+  axios.defaults.headers.common.Authorization = '';
+};
 
 // Реєстрація користувача
 export const signup = async (body) => {
