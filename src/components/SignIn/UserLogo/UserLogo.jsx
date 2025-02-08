@@ -23,8 +23,8 @@ export const UserLogo = () => {
   const token = useSelector(selectUserToken);
   console.log(user); // Додайте логування для перевірки
   console.log(token);
-  if (user === undefined) {
-    return <div>Loading...</div>;
+  // if (user === undefined) {
+  //   return <div>Loading...</div>;
   }
   const { name = ' ', avatarURL = ' ' } = user;
   // const { name , avatarURL } = useSelector(selectUser);
