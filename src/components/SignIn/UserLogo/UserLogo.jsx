@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import sprite from 'src/assets/images/sprite/sprite.svg';
-import { selectUser } from '../../../redux/auth/authSelectors';
+import { selectUser, selectUserToken } from '../../../redux/auth/authSelectors';
 import { UserLogoModalWrap } from '../UserLogoModal/UserLogoModal.styled';
 import {
   UserAvatar,
@@ -20,7 +20,9 @@ export const UserLogo = () => {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const user = useSelector(selectUser);
+  const token = useSelector(selectUserToken);
   console.log(user); // Додайте логування для перевірки
+  console.log(token);
   if (user === undefined) {
     return <div>Loading...</div>;
   }
