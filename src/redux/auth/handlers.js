@@ -7,8 +7,7 @@ export const handleRegister = (state, { payload }) => {
 };
 
 export const handleLogin = (state, { payload }) => {
-  const { email, avatarURL, name, gender, waterRate } = payload.user;
-  state.user = { email, avatarURL, name, gender, waterRate };
+  state.user= payload.user;
   state.token = payload.token;
   state.isLoggedIn = true;
 };
