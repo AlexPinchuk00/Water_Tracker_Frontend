@@ -7,7 +7,7 @@ export const setToken = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-export const unsetToken = () => {
+export const unSetToken = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
