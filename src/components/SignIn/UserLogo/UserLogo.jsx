@@ -21,6 +21,9 @@ export const UserLogo = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const user = useSelector(selectUser);
   console.log(user); // Додайте логування для перевірки
+  if (user === undefined) {
+    return <div>Loading...</div>;
+  }
   const { name = ' ', avatarURL = ' ' } = user;
   // const { name , avatarURL } = useSelector(selectUser);
 

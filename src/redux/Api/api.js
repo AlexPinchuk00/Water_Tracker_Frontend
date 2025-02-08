@@ -15,6 +15,7 @@ const unsetToken = () => {
 
 export const signup = async body => {
   const { data } = await axios.post('/auth/signup', body);
+  console.log('Signin response data:', data);
   setToken(data.accessToken);
   return data;
 };
