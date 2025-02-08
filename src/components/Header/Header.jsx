@@ -15,7 +15,9 @@ export const Header = () => {
         <ContainerHeader>
           <Logo />
           {/* <WrapHeader>{isLoggedIn ? <UserLogo /> : <UserAuth />}</WrapHeader> */}
-          <WrapHeader></WrapHeader>
+          <WrapHeader>
+            <UserAuth />
+          </WrapHeader>
         </ContainerHeader>
       </Container>
     </header>
