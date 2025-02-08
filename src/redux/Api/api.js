@@ -1,84 +1,91 @@
-import axios from 'axios';
-import { formatDate } from '../../helpers/utils/dateUtils';
+import authInstance, { setToken, unSetToken } from './axiosInstance';
 
-axios.defaults.baseURL = 'https://watertrackerbackend-5ymk.onrender.com';
+// ==============================
+//            AUTH
+// ==============================
 
-const setToken = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
-
-const unsetToken = () => {
-  axios.defaults.headers.common.Authorization = '';
-};
-
-// Auth
-
-export const signup = async body => {
-  const { data } = await axios.post('/auth/signup', body);
-  setToken(data.accessToken);
+// Реєстрація користувача
+export const signup = async (body) => {
+  const { data } = await authInstance.post('/auth/signup', body);
+  setToken(data.token);
   return data;
 };
 
-export const signin = async body => {
-  const { data } = await axios.post('/auth/signin', body);
-  setToken(data.accessToken);
+// Вхід користувача
+export const signin = async (body) => {
+  const { data } = await authInstance.post('/auth/signin', body);
+  setToken(data.token);
   return data;
 };
 
+// Вихід користувача
 export const logout = async () => {
-  await axios.post('/auth/logout');
-  unsetToken();
+  await authInstance.post('/auth/logout');
+  unSetToken();
 };
 
-export const requestPassword = async body => {
-  const { data } = await axios.post('/auth/request-pass', body);
-  return data;
-};
+// // Оновлення токена якщо витягнемо з кукі видалити це
+// export const refresh = async (token) => {
+//   const { data } = await authInstance.get('/auth/refresh', {
+//     headers: { Authorization: `Bearer ${token}` },
+//   });
 
-export const resetPassword = async body => {
-  const { data } = await axios.post('/auth/reset-pass', body);
-  return data;
-};
+//   setToken(data.token);
+//   return data;
+// };
 
-// User
+// ==============================
+//            USER
+// ==============================
 
-export const updateWaterRate = async newWaterRate => {
-  const { data } = await axios.patch('/waterrate', {
-    waterRate: newWaterRate,
+// Оновлення щоденної цілі споживання води
+export const updateDailyGoal = async (newDailyGoal) => {
+  const { data } = await authInstance.patch('/daily-norma', {
+    dailyGoal: newDailyGoal,
   });
   return data;
 };
 
-export const refreshUser = async token => {
-  setToken(token);
-  const { data } = await axios.get('/user/current');
-  return data;
-};
+// Оновлення аватара користувача
+export const updateUserAvatar = async (newAvatarFile) => {
+  const formData = new FormData();
+  formData.append('avatar', newAvatarFile);
 
-export const updateAvatar = async newPhotoFile => {
   const {
     data: { avatarURL },
-  } = await axios.patch('/user/avatar', newPhotoFile, {
+  } = await authInstance.patch('/user/avatar', formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
   });
+
   return avatarURL;
 };
 
-export const editUserInfo = async body => {
-  const { data } = await axios.patch('/user', body);
+// Оновлення даних користувача
+export const updateUser = async (body) => {
+  const { data } = await authInstance.patch('/user', body, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
   return data;
 };
 
-export const deleteUser = async () => {
-  await axios.delete('/user/delete-account');
-  unsetToken();
+// Отримання інформації про користувача
+export const getUser = async (params) => {
+  const { data } = await authInstance.get('/user', { params });
+  return data;
 };
-// Water
 
-export const addWaters = async newWater => {
-  const { data } = await axios.post('/water/entry', newWater, {
+// ==============================
+//            WATER
+// ==============================
+
+// Додавання нового запису про воду
+export const addEntry = async (newEntry) => {
+  const { data } = await authInstance.post('/water', newEntry, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -86,8 +93,9 @@ export const addWaters = async newWater => {
   return data;
 };
 
-export const editWater = async ({ newWaterUser, id }) => {
-  const { data } = await axios.patch(`/water/entry/${id}`, newWaterUser, {
+// Оновлення існуючого запису про воду
+export const updateEntry = async ({ newEntry, id }) => {
+  const { data } = await authInstance.patch(`/water/entry/${id}`, newEntry, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -95,15 +103,19 @@ export const editWater = async ({ newWaterUser, id }) => {
   return data;
 };
 
-export const deleteWater = async id => {
-  await axios.delete(`/water/entry/${id}`);
+// Видалення запису про воду
+export const deleteEntry = async (id) => {
+  await authInstance.delete(`/water/entry/${id}`);
 };
 
-export const fetchTodayWater = async () => {
-  const date = formatDate(new Date());
-  return await axios.get(`/today?date=${date}`);
+// Отримання даних про споживання води за сьогодні
+export const getToday = async () => {
+  const { data } = await authInstance.get('/today');
+  return data;
 };
 
-export const fetchMonthWater = async ({ startDate, endDate }) => {
-  return await axios.get(`/month?startDate=${startDate}&endDate=${endDate}`);
+// Отримання статистики за місяць
+export const getMonthStatistics = async (date) => {
+  const { data } = await authInstance.get(`/month/${date}`);
+  return data;
 };
