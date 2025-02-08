@@ -26,7 +26,7 @@ export const UserLogo = () => {
   // if (user === undefined) {
   //   return <div>Loading...</div>;
   // }
-  const { name = ' ', avatarURL = ' ' } = user;
+  const { name , avatarURL } = user;
   // const { name , avatarURL } = useSelector(selectUser);
 
   const showModal = () => {
