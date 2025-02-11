@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { format } from 'date-fns';
-import DaysGeneralStats from './DaysGeneralStats';
+import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats';
 
 
 const MonthStatsTable = ({ monthDataMap }) => {
