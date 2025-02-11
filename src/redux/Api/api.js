@@ -1,4 +1,6 @@
 import axios from 'axios';
+// import { createAsyncThunk } from '@reduxjs/toolkit';
+// import { toast } from 'react-toastify';
 
 export const instanceWater = axios.create({
   withCredentials: true,
@@ -51,6 +53,26 @@ export const refresh = async () => {
 };
 
 // User
+
+// export const editUserWaterRate = createAsyncThunk(
+//   'user/editWater',
+//   async (data, thunkAPI) => {
+//     console.log("enter");
+//     try {
+//       const response = await instanceWater.patch('/water/daily-norma', data);
+//       toast.success('Your water rate changed successfully');
+//       console.log("success");
+//       return response.data;
+//     } catch (error) {
+//       console.log("error");
+//       if (error.response?.data?.data?.message) {
+//         return thunkAPI.rejectWithValue(error.response.data.data.message);
+//       }
+//       toast.error('Failed to change water rate');
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   },
+// );
 
 export const updateWaterRate = async newWaterRate => {
   const { data } = await instanceWater.patch('water/daily-norma', {

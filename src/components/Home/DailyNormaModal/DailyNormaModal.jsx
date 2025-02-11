@@ -16,7 +16,7 @@ import {
   Wrapper,
   Result,
 } from './DailyNormaModal.styled';
-import { updateWaterRate } from '../../../redux/Api/api';
+import { updateWaterRate, editUserWaterRate } from '../../../redux/Api/api';
 import { BaseModalWindow } from '../../common/BaseModalWindow/BaseModalWindow';
 
 export const DailyNormaModal = ({ onClose, onShow }) => {
@@ -47,12 +47,12 @@ export const DailyNormaModal = ({ onClose, onShow }) => {
     calculateWaterDailyNorm();
   }, [calculateWaterDailyNorm]);
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     const userGoal = parseFloat(intakeGoal);
 
-    const finishGoal = userGoal ? userGoal : dailyWaterNorm;
+    const finishGoal = parseFloat(userGoal ? userGoal : dailyWaterNorm);
 
     dispatch(updateWaterRate({ waterRate: finishGoal }));
     onClose();
@@ -113,6 +113,7 @@ export const DailyNormaModal = ({ onClose, onShow }) => {
                 type="number"
                 name="weight"
                 value={weight}
+                placeholder="0"
                 onChange={e =>
                   setWeight(e.target.value.replace(/[^0-9.]/g, ''))
                 }
@@ -127,6 +128,7 @@ export const DailyNormaModal = ({ onClose, onShow }) => {
                 type="number"
                 name="timeOfActive"
                 value={timeOfActive}
+                placeholder="0"
                 onChange={e =>
                   setTimeOfActive(e.target.value.replace(/[^0-9.]/g, ''))
                 }
@@ -146,7 +148,11 @@ export const DailyNormaModal = ({ onClose, onShow }) => {
               <Input
                 type="number"
                 name="intakeGoal"
+                min="0.5"
+                step="0.1"
+                max="15"
                 value={intakeGoal}
+                placeholder="0"
                 onChange={e => setIntakeGoal(e.target.value)}
               />
             </div>
