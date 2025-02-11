@@ -99,15 +99,8 @@ export const DaysButton = styled.button`
   font-size: 14px;
   background-color: ${({ theme }) => theme.color.white};
   border: 1px solid
-    ${({ theme, isHighlighted, isFullfiled }) => {
-      if (isHighlighted) {
-        return theme.color.secondaryYellow;
-      } else if (isFullfiled) {
-        return theme.color.primaryBlue;
-      } else {
-        return theme.color.white;
-      }
-    }};
+    ${({ theme, isHighlighted }) =>
+      isHighlighted ? theme.color.secondaryYellow : theme.color.white};
   color: ${({ theme }) => theme.color.black};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
