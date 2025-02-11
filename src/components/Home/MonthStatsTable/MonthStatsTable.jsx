@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import {DaysGeneralStats} from '../DaysGeneralStats/DaysGeneralStats';
 
 
-const MonthStatsTable = ({ monthDataMap }) => {
+export const MonthStatsTable = ({ monthDataMap }) => {
   const [selectedDayStats, setSelectedDayStats] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [dayPosition, setDayPosition] = useState({ top: 0, left: 0, width: 0 });
@@ -77,4 +77,3 @@ const MonthStatsTable = ({ monthDataMap }) => {
     </div>
   );
 };
-export default MonthStatsTable;
