@@ -1,23 +1,35 @@
 import styled from '@emotion/styled';
 
-export const Wrapper = styled.div``;
-
-export const Container = styled.div`
+export const BoxModal = styled.div`
   padding-left: 12px;
   padding-right: 12px;
   padding-bottom: 24px;
 
-  @media screen and (min-width: 767px and max-with: 1439px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 704px;
     padding-left: 24px;
     padding-right: 24px;
     padding-bottom: 32px;
   }
 
-  @media screen and (min-width: 1440px) {
-    padding-left: 24px;
-    padding-right: 24px;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     width: 592px;
+  }
+`;
+
+export const Formula = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 12px;
+
+  span {
+    color: ${({ theme }) => theme.color.accent};
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    flex-direction: row;
+    gap: 24px;
   }
 `;
 
@@ -25,66 +37,40 @@ export const Form = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-
-  // padding: 0 12px;
-  // max-with: 280px;
-  color: #2f2f2f;
 `;
 
-export const Formula = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  color: #2f2f2f;
-
-  div:not(:last-child) {
-    margin-bottom: 16px;
-  }
-
-  span {
-    color: #407bff;
-  }
-
-  @media screen and (min-width: 767px) {
-    flex-direction: row;
-    gap: 24px;
-  }
-`;
-
-export const FormSubTitle = styled.h3`
+export const TitleModal = styled.h3`
   margin-bottom: 16px;
+  color: ${({ theme }) => theme.color.black};
   font-size: 18px;
   font-weight: 500;
   line-height: 1.1;
-
-  color: #000000;
 `;
 
-export const Paragraph = styled.div`
-  font-weight: 400;
+export const Paragraph = styled.p`
   font-size: 16px;
+  font-weight: 400;
   line-height: 1.25;
-  color: #2f2f2f;
+  color: ${({ theme }) => theme.color.black};
 `;
 
-export const Description = styled.div`
-  border: 1px solid #d7e3ff;
-  border-radius: 10px;
-  margin: 12px 0 24px 0;
+export const Comment = styled.div`
+  display: flex;
   padding: 10px;
-
-  p {
-    font-size: 12px;
-    line-height: 1.33333;
-    color: #d7e3ff;
-  }
+  margin-bottom: 24px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.33;
+  border-radius: 10px;
+  border: 1px solid ${({ theme }) => theme.color.secondaryPowderBlue};
+  color: ${({ theme }) => theme.color.black};
 
   span {
-    color: #407bff;
+    color: ${({ theme }) => theme.color.accent};
   }
 `;
 
-export const FormRadio = styled.div`
+export const FormRadio = styled.form`
   gap: 16px;
 
   span {
@@ -112,8 +98,8 @@ export const InputRadio = styled.input`
       width: 14px;
       height: 14px;
       border-radius: 50%;
-      border: 1px solid #407bff;
-      background-color: #ffffff;
+      border: 1px solid ${({ theme }) => theme.color.accent};
+      background-color: ${({ theme }) => theme.color.white};
     }
 
     &:after {
@@ -122,7 +108,7 @@ export const InputRadio = styled.input`
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #407bff;
+      background: ${({ theme }) => theme.color.accent};
       top: 50%;
       left: 4px;
       transform: translate(0, -50%);
@@ -136,7 +122,7 @@ export const InputRadio = styled.input`
 `;
 
 export const Input = styled.input`
-  border: 1px solid #d7e3ff;
+  border: 1px solid ${({ theme }) => theme.color.secondaryPowderBlue};
   border-radius: 6px;
   display: flex;
   padding: 12px 10px;
@@ -146,25 +132,25 @@ export const Input = styled.input`
   font-size: 16px;
   width: 100%;
   margin-top: 8px;
-  color: #407bff;
-  background-color: #ffffff;
+  color: ${({ theme }) => theme.color.secondaryLightBlue};
+  background-color: ${({ theme }) => theme.color.white};
 
   &::placeholder {
-    color: #d7e3ff;
+    color: ${({ theme }) => theme.color.secondaryLightBlue};
   }
 
   &:hover {
-    color: #407bff'
-    border: 1px solid #407bff;
+    color: ${({ theme }) => theme.color.accent};
+    border: 1px solid ${({ theme }) => theme.color.accent};
   }
 
   &:focus {
     outline: none;
-    border: 1px solid #407bff;
+    border: 1px solid ${({ theme }) => theme.color.accent};
   }
 
   &:not(:placeholder-shown) {
-    color: #407bff;
+    color: ${({ theme }) => theme.color.accent};
   }
 
   &[type='number'] {
@@ -176,30 +162,25 @@ export const Input = styled.input`
   }
 `;
 
-export const CalculateWater = styled.div`
+export const FormResult = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
 
-  span {
+  strong {
     font-size: 18px;
     font-weight: 700;
-    color: #407bff;
-  }
-`;
-
-export const Result = styled.p`
-  width: 190px;
-
-  @media screen and (min-width: 768px) {
-    width: 342px;
+    color: ${({ theme }) => theme.color.accent};
   }
 
-  @media screen and (min-width: 1440px) {
-    width: 342px;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    display: block;
   }
 `;
 
 export const ButtonSave = styled.button`
-  background-color: #407bff;
+  background-color: ${({ theme }) => theme.color.accent};
   color: #fff;
   display: flex;
   justify-content: center;

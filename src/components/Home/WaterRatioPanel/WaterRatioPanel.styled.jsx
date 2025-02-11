@@ -16,9 +16,6 @@ export const WaterRatioPanelContainer = styled.div`
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-    position: absolute;
-    left: 0;
-    top: 594px;
     width: 592px;
     gap: 32px;
   }
