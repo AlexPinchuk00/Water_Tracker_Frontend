@@ -1,34 +1,39 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/auth/authSelectors';
+import { DailyNormaModal } from 'components';
 import {
-  DailyWrapper,
-  FlexContainer,
-  TitleForm,
-  ButtonEdit,
-  Description,
+  DailyBox,
+  BackgroundHome,
+  DailyNormaStyled,
 } from './DailyNorma.styled';
-import { DailyNormaModal } from '../DailyNormaModal/DailyNormaModal';
 
 export const DailyNorma = () => {
   const { waterRate } = useSelector(selectUser);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
 
-  const dispatch = useDispatch();
+  const openModal = () => {
+    setModalOpen(true);
+  };
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
-  const convertInL = (waterRate / 1000).toFixed(1);
+  // Перетворення мілілітрів у літри
+  const waterRateL = (waterRate / 1000).toFixed(1) + ' L';
 
   return (
-    <DailyWrapper>
-      <TitleForm>My Daily Norma</TitleForm>
-      <FlexContainer>
-        <Description>{waterRate ? convertInL : 2} L </Description>
-        <ButtonEdit onClick={openModal}>Edit</ButtonEdit>
-      </FlexContainer>
-      {isModalOpen && <DailyNormaModal onClose={closeModal} />}
-    </DailyWrapper>
+    <DailyBox>
+      <DailyNormaStyled>
+        <h2>My daily norma: </h2>
+        <div>
+          <p>{waterRateL}</p>
+          <button onClick={openModal}>Edit</button>
+        </div>
+        <DailyNormaModal onClose={closeModal} onShow={isModalOpen} />
+      </DailyNormaStyled>
+      <BackgroundHome />
+    </DailyBox>
   );
 };
