@@ -18,8 +18,8 @@ const initialState = {
   month: [],
   today: {
     dailyWaterList: [],
-    dailyGoal: 2000,
-    progress: '0%',
+    dailyGoal: 0,
+    progress: 0,
   },
 };
 

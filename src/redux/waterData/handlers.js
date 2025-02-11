@@ -1,16 +1,9 @@
-const handleProgress = state => {
-  const currentAmount = state.today.dailyWaterList.reduce(
-    (acc, entry) => acc + entry.amount,
-    0,
-  );
-  const progress = ((currentAmount / state.today.dailyGoal) * 100).toFixed(0);
-
-  state.today.progress = progress < 100 ? progress + '%' : '100%';
-};
-
-export const handlerAddWater = (state, { payload: { _id, time, amount } }) => {
+export const handlerAddWater = (
+  state,
+  { payload: { _id, time, amount } },
+) => {
   state.today.dailyWaterList.push({ _id, time, amount });
-  handleProgress(state);
+  state.today.dailyGoal += amount;
 };
 
 export const handleEditWater = (state, { payload }) => {
@@ -21,7 +14,10 @@ export const handleEditWater = (state, { payload }) => {
     array[idx] = payload;
   }
 
-  handleProgress(state);
+  state.today.dailyGoal = array.reduce(
+    (acc, item) => acc + item.waterVolume,
+    0,
+  );
 };
 
 export const handlerDeleteWater = (state, { payload }) => {
@@ -29,7 +25,12 @@ export const handlerDeleteWater = (state, { payload }) => {
     data => data._id !== payload,
   );
 
-  handleProgress(state);
+  const array = state.today.dailyWaterList;
+
+  state.today.dailyGoal = array.reduce(
+    (acc, item) => acc + item.waterVolume,
+    0,
+  );
 };
 
 export const handleGetTodayWater = (state, { payload }) => {
