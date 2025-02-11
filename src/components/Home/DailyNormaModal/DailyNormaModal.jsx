@@ -185,3 +185,7 @@ export const DailyNormaModal = ({ onClose, onShow }) => {
   );
 };
 
+DailyNormaModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+};
+  
