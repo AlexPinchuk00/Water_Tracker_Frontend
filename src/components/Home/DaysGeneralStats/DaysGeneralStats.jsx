@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/auth/authSelectors';
 import { formatDate } from '../../../helpers/utils/dateUtils';
@@ -29,20 +29,25 @@ export const DaysGeneralStats = ({ stats, position, onShow }) => {
       modal.style.top = `${top - modal.offsetHeight}px`;
       modal.style.transform = `translateX(0)`;
     } else {
-      const spaceToLeft = left; 
-      const spaceToRight = window.innerWidth - left - width; 
+      // Логіка для планшетів та десктопів
+      const spaceToLeft = left; // Відстань від елемента до лівого краю екрана
+      const spaceToRight = window.innerWidth - left - width; // Відстань від елемента до правого краю екрана
 
+      // Якщо зліва достатньо місця, позиціонувати модальне вікно зліва від елемента
       if (spaceToLeft > modalWidth) {
         modal.style.left = `${left - modalWidth}px`;
       }
+      // Якщо зліва не вистачає місця, але вистачає справа, позиціонувати модальне вікно справа
       else if (spaceToRight > modalWidth) {
         modal.style.left = `${left + width}px`;
       }
+      // Якщо немає достатньо місця ні зліва, ні справа, позиціонувати по центру екрана
       else {
         modal.style.left = '50%';
         modal.style.transform = 'translateX(-50%)';
       }
 
+      // Позиціонувати модальне вікно над елементом
       modal.style.top = `${top - modal.offsetHeight}px`;
     }
   }, [position]);
