@@ -16,7 +16,7 @@ import {
   Wrapper,
   Result,
 } from './DailyNormaModal.styled';
-import { updateWaterRate, editUserWaterRate } from '../../../redux/Api/api';
+import { updateWaterRate } from '../../../redux/Api/api';
 import { BaseModalWindow } from '../../common/BaseModalWindow/BaseModalWindow';
 
 export const DailyNormaModal = ({ onClose, onShow }) => {
