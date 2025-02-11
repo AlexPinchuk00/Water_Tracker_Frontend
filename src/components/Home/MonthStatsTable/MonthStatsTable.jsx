@@ -35,8 +35,8 @@ export const MonthStatsTable = () => {
   const [isHovering, setIsHovering] = useState(false);
   const dayRefs = useRef({});
   const roundedWaterVolumePercentage = useSelector(selectWaterVolumePercentage);
-  const startDate = format(startOfMonth(selectedMonth), 'yyyy-MM-dd');
-  const endDate = format(endOfMonth(selectedMonth), 'yyyy-MM-dd');
+  const startDate = format(startOfMonth(selectedMonth), 'yyyy-MM');
+  const endDate = format(endOfMonth(selectedMonth), 'yyyy-MM');
   useEffect(() => {
     dispatch(getMonthWater({ startDate, endDate }));
   }, [dispatch, endDate, roundedWaterVolumePercentage, startDate]);
