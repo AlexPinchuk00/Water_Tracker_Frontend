@@ -76,7 +76,7 @@ export const Description = styled.div`
   p {
     font-size: 12px;
     line-height: 1.33333;
-    color: #d7e3ff;
+    color: #8f8f8f;
   }
 
   span {
