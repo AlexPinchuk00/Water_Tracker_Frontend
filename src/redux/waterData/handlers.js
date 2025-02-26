@@ -109,14 +109,11 @@ export const handlerUpdateNorma = (state, { payload }) => {
   state.today.dailyGoal = payload;
   handleProgress(state);
 
-  
-
   const today = new Date().toISOString().slice(0, 10);
   const dayToUpd = state.month.find(item => item.date === today);
 
   dayToUpd.percentage = state.today.progress;
   dayToUpd.dailyGoal = (payload / 1000).toFixed(1) + ' L';
-
 
   state.month = state.month.map(day =>
     day.date === dayToUpd.date ? dayToUpd : day
