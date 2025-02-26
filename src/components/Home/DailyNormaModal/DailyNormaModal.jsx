@@ -67,8 +67,8 @@ export const DailyNormaModal = ({ onClose, onShow }) => {
 
 
     try {
-      await dispatch(updateWaterNormaThunk({ dailyGoal }));
-      await dispatch(getUserThunk()); // Оновлення даних юзера після збереження
+      dispatch(updateWaterNormaThunk({ dailyGoal }));
+      dispatch(getUserThunk()); // Оновлення даних юзера після збереження
       onClose();
     } catch (error) {
      
